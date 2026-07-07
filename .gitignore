@@ -1,0 +1,61 @@
+# ============================================
+# CardioVision AI - Git Ignore
+# ============================================
+
+# Environment
+.env
+*.env.local
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+dist/
+build/
+
+# Java
+target/
+*.class
+*.jar
+*.war
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+
+# ML Models (large files)
+ai-service/ml_models/*.pkl
+ai-service/ml_models/*.h5
+ai-service/ml_models/*.onnx
+ai-service/ml_models/*.joblib
+!ai-service/ml_models/.gitkeep
+
+# Uploads
+uploads/
+storage/
+
+# Logs
+logs/
+*.log
+
+# Docker
+docker/postgres/data/
+
+# Coverage
+coverage/
+htmlcov/
+.coverage

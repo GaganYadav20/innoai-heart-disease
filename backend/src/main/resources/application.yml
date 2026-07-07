@@ -1,0 +1,106 @@
+# ============================================
+# CardioVision AI - Application Configuration
+# ============================================
+
+spring:
+  application:
+    name: cardiovision-api
+
+  # ── Database ──
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:cardiovision}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:Root}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+
+  # ── JPA ──
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+
+  # ── Flyway ──
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  # ── File Upload ──
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  # ── Mail ──
+  mail:
+    host: ${MAIL_HOST:smtp.gmail.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:noreply@cardiovision.ai}
+    password: ${MAIL_PASSWORD:changeme}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+# ── JWT Configuration ──
+jwt:
+  secret: ${JWT_SECRET:cardiovision-jwt-secret-key-2024-enterprise-grade-minimum-256-bits-long}
+  expiration: ${JWT_EXPIRATION:86400000}
+  refresh-expiration: ${JWT_REFRESH_EXPIRATION:604800000}
+
+# ── AI Service ──
+ai:
+  service:
+    url: ${AI_SERVICE_URL:http://localhost:8000}
+
+# ── File Storage ──
+file:
+  upload-dir: ${UPLOAD_DIR:./uploads}
+  encryption-key: ${ENCRYPTION_KEY:cardiovision-file-encryption-key-2024}
+
+# ── Server ──
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# ── Actuator ──
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when_authorized
+
+# ── OpenAPI ──
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+
+# ── Logging ──
+logging:
+  level:
+    root: INFO
+    com.cardiovision: DEBUG
+    org.springframework.security: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

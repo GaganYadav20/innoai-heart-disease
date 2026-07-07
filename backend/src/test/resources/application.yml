@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: cardiovision-api-test
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: false
+  flyway:
+    enabled: false
+  mail:
+    host: localhost
+    port: 3025
+
+jwt:
+  secret: cardiovision-jwt-secret-key-2024-enterprise-grade-minimum-256-bits-long
+  expiration: 86400000
+  refresh-expiration: 604800000
+
+ai:
+  service:
+    url: http://localhost:8000
+
+file:
+  upload-dir: ./test_uploads
+  encryption-key: cardiovision-file-encryption-key-2024
+
+logging:
+  level:
+    root: INFO
+    com.cardiovision: DEBUG
