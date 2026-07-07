@@ -46,7 +46,7 @@ React 19 Frontend  ──►  Nginx Reverse Proxy  ──►  Spring Boot API (P
 
 ```bash
 git clone <repository>
-cd WEB-APP-CVD
+cd innoai-heart-disease
 docker compose up --build
 ```
 
@@ -95,7 +95,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ## 📁 Project Structure
 
 ```
-WEB-APP-CVD/
+innoai-heart-disease/
 ├── frontend/           # React 19 + TypeScript + Vite
 ├── backend/            # Spring Boot 3 + Java 21
 ├── ai-service/         # FastAPI + Python 3.12
